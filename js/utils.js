@@ -10,14 +10,16 @@ function printMat(mat, selector) {
     strHTML += '</tr>'
   }
   // strHTML += '</tbody></table>';
+  // console.log(strHTML);
   var elContainer = document.querySelector(selector);
   elContainer.innerHTML = strHTML;
 }
 
 // location such as: {i: 2, j: 7}
-function renderCell(location, value) {
-  // Select the elCell and set the value
-  var elCell = document.querySelector(`.cell${location.i}-${location.j}`);
+function renderCell(location1,location2, value) {
+  // Select the elCell and set the value 
+  var elCell = document.querySelector(`.board${location1}-${location2}`);
+console.log(elCell);
   elCell.innerHTML = value;
 }
 
@@ -29,7 +31,7 @@ function getRandomColor() {
   var letters = '0123456789ABCDEF';
   var color = '#';
   for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
+    color += letters[Math.floor(Math.random() * 16)];
   }
   return color;
 }
