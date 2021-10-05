@@ -4,7 +4,7 @@ function printMat(mat, selector) {
     strHTML += '<tr>';
     for (var j = 0; j < mat[0].length; j++) {
       var cell = mat[i][j];
-      var className = 'cell cell' + i + '-' + j;
+      var className = `cell " onclick="cellClicked(this,${i},${j})"` + i + '-' + j;
       strHTML += '<td class="' + className + '"> ' + cell + ' </td>'
     }
     strHTML += '</tr>'
@@ -16,10 +16,10 @@ function printMat(mat, selector) {
 }
 
 // location such as: {i: 2, j: 7}
-function renderCell(location1,location2, value) {
+function renderCell(location, value) {
   // Select the elCell and set the value 
-  var elCell = document.querySelector(`.board${location1}-${location2}`);
-console.log(elCell);
+  var elCell = document.querySelector(`.board${location}-${location}`);
+  console.log(elCell);
   elCell.innerHTML = value;
 }
 

@@ -4,7 +4,6 @@ const WIN = '😎'
 const LOSE = '🥺'
 const MINES = '💣'
 
-
 var gBoard = {
     minesAroundCount: 4,
     isShown: true,
@@ -23,44 +22,43 @@ var gGame = {
 }
 function init() {
     gBoard = createBoard(gLevel.size)
+   var res= checkCells(gBoard)
+   cellClicked()
+    console.log(res);
+    console.log(gBoard);
+
     printMat(gBoard, '.board')
 }
+
 function createBoard(size) {
     var board = [];
     for (var i = 0; i < size; i++) {
         board.push([]);
         for (var j = 0; j < size; j++) {
-            var cells=checkCells(gBoard)
-        //    var takeCells= sentCells(cells)
-            board[i][j] = cells.countNeghbers
+            board[i][j] = ''
         }
     }
-    board[1][1] = MINES;
-    board[3][3] = MINES;
+
+    
+    board[3][3] = MINES
+    board[1][1]=MINES
     return board
 }
+
 function checkCells(board) {
-    var neghbers = []
+    var neighbors = []
     for (var i = 0; i < board.length; i++) {
-        for (var j = 0; j < board[0].length; j++) {
-            neghbers.push({
-                location: {
-                    cellI: i,
-                    cellJ: j,
-                },
-                countNeghbers: setMinesNegsCount(i, j, gBoard)
-            })
+        for (var j = 0; j < board.length; j++) {
+            neighbors.push(setMinesNegsCount(i, j, board))
+            if (board[i][j] === MINES) continue
+            gBoard[i][j] = neighbors[j]
         }
     }
-    return neghbers
+    console.log(neighbors);
+    console.log(gBoard);
+    return neighbors
 }
-function sentCells(cells){
-    for(var i=0;i<cells.length;i++){
-        console.log(cells[i]);
-        // renderCell(cells[i].location.cellI, cells[i].location.cellJ,cells[i].countNeghbers)
-    }
-    return
-}
+
 function setMinesNegsCount(cellI, cellJ, mat) {
     var count = 0;
     for (var i = cellI - 1; i <= cellI + 1; i++) {
@@ -73,6 +71,10 @@ function setMinesNegsCount(cellI, cellJ, mat) {
 
     }
     return count;
-
-
+}
+function cellClicked(elCell, i, j) {
+    var show=document.querySelector('.cell')
+    if (gBoard.isShown){
+        show.style.display='blocke'
+    }else  show.style.display='none'
 }
