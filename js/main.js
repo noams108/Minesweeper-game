@@ -23,7 +23,7 @@ var gGame = {
 function init() {
     gBoard = createBoard(gLevel.size)
    var res= checkCells(gBoard)
-   cellClicked()
+//    cellClicked()
     console.log(res);
     console.log(gBoard);
 
@@ -72,9 +72,9 @@ function setMinesNegsCount(cellI, cellJ, mat) {
     }
     return count;
 }
-function cellClicked(elCell, i, j) {
-    var show=document.querySelector('.cell')
-    if (gBoard.isShown){
-        show.style.display='blocke'
-    }else  show.style.display='none'
-}
+// function cellClicked(elCell, i, j) {
+//     var show=document.querySelector('.cell')
+//     if (gBoard.isShown){
+//         show.style.display='blocke'
+//     }else  show.style.display='none'
+// }
