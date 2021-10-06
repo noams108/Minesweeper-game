@@ -22,11 +22,12 @@ var gGame = {
 }
 function init() {
     gBoard = createBoard(gLevel.size)
+    console.log(gBoard);
    var res= checkCells(gBoard)
 //    cellClicked()
-    console.log(res);
+    // console.log(res);
     console.log(gBoard);
-
+    // hidCells(gBoard)
     printMat(gBoard, '.board')
 }
 
@@ -40,7 +41,7 @@ function createBoard(size) {
     }
 
     
-    board[3][3] = MINES
+    board[2][3] = MINES
     board[1][1]=MINES
     return board
 }
@@ -51,11 +52,12 @@ function checkCells(board) {
         for (var j = 0; j < board.length; j++) {
             neighbors.push(setMinesNegsCount(i, j, board))
             if (board[i][j] === MINES) continue
-            gBoard[i][j] = neighbors[j]
+            board[i][j] = neighbors[j]
         }
     }
+    gBoard=board
     console.log(neighbors);
-    console.log(gBoard);
+    // console.log(gBoard);
     return neighbors
 }
 
@@ -72,9 +74,23 @@ function setMinesNegsCount(cellI, cellJ, mat) {
     }
     return count;
 }
+// function hidCells(board){
+//     console.log(board.isShown);
+
+//     board=document.querySelector('.cell')
+//     // console.log(show);
+//     if (!board.isShown){
+//         board.style.display='none';
+//     }else board.style.display='blocke';
+// }
+function updateLevel(size,mines){
+    gLevel.size=size
+   gLevel.mines=mines
+   console.log(gLevel);
+    return gLevel
+}
 // function cellClicked(elCell, i, j) {
-//     var show=document.querySelector('.cell')
-//     if (gBoard.isShown){
-//         show.style.display='blocke'
-//     }else  show.style.display='none'
+//     gBoard.isShown=true
+//     console.log(gBoard);
+
 // }
